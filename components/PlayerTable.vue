@@ -673,8 +673,11 @@ export default {
     },
   },
   async fetch() {
-    this.players = await fetch('http://localhost:8000/api/players').then(
-      (res) => res.json()
+    this.players = await fetch('https://fantasy.premierleague.com/api/bootstrap-static/').then(
+      (res) => {
+        console.log(res.json())
+        return res.json()
+      }
     )
     this.player_types = await fetch(
       'http://localhost:8000/api/players/types'
