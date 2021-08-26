@@ -42,10 +42,10 @@
               </div>
             </div>
             <p
-              class="w-full bg-gray-100 text-gray-800 text-center p-4"
+              class="w-full bg-gray-100 text-blue-400 text-center p-4 animate-pulse"
               v-if="$fetchState.pending"
             >
-              Loadin...
+              REQUESTING API...
             </p>
             <p
               class="w-full bg-gray-100 text-gray-400 text-center p-4"
@@ -664,8 +664,6 @@ export default {
       var playerType = null
       this.player_types.forEach((type) => {
         if (type.id == id) {
-          console.log('found id : ' + type.id)
-          console.log('type: ' + type.singular_name_short)
           playerType = type.singular_name_short
         }
       })
@@ -673,14 +671,11 @@ export default {
     },
   },
   async fetch() {
-    this.players = await fetch('https://fantasy.premierleague.com/api/bootstrap-static/').then(
-      (res) => {
-        console.log(res.json())
-        return res.json()
-      }
+    this.players = await fetch('https://fantasybet.herokuapp.com/api/players').then(
+      (res) => res.json()
     )
     this.player_types = await fetch(
-      'http://localhost:8000/api/players/types'
+      'https://fantasybet.herokuapp.com/api/players/types'
     ).then((res) => res.json())
     this.totalPlayers = this.players.length
   },
