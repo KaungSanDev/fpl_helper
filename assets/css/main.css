@@ -1,0 +1,9 @@
+:root {
+  --main-color: rgb(55, 0, 60);
+}
+.theme-color {
+  background-color: var(--main-color);
+}
+.theme-bg-img {
+  background-image: url('~assets/images/theme-bg.svg');
+}
